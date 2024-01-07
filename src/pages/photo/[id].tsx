@@ -1,7 +1,6 @@
 import { PageLayout } from '@/components/layout'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { IPhoto } from "@/types/photos";
-import axios from "axios";
 
 
 export default function PhotoDetails({
@@ -32,11 +31,12 @@ export const getServerSideProps: GetServerSideProps<{ photo: IPhoto }> = async (
   }
 
   try {
-    const response = await axios.get<IPhoto>(`https://jsonplaceholder.typicode.com/photos/${params.id}`);
+    const response = await fetch(`https://jsonplaceholder.typicode.com/photos/${params.id}`);
+    const data = await response.json();
 
     return {
       props: {
-        photo: response.data,
+        photo: data,
       },
     };
   } catch (error) {

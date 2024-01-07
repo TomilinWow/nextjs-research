@@ -2,7 +2,6 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { PageLayout } from '@/components/layout'
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { IPost } from "@/types/posts";
 
 export const PostCard = (props: IPost) => {
@@ -30,9 +29,9 @@ export default function Post() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get<IPost[]>('https://jsonplaceholder.typicode.com/posts');
-        console.log('data', response.data);
-        setPosts(response.data);
+        const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+        const data = await response.json();
+        setPosts(data);
       } catch (error) {
         console.error('Error fetching data:', error);
       }

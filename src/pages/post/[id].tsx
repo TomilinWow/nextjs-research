@@ -1,7 +1,5 @@
 import { PageLayout } from '@/components/layout'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
-import { IPhoto } from "@/types/photos";
-import axios from "axios";
 import { IPost } from "@/types/posts";
 
 
@@ -33,11 +31,12 @@ export const getServerSideProps: GetServerSideProps<{ post: IPost }> = async ({ 
   }
 
   try {
-    const response = await axios.get<IPost>(`https://jsonplaceholder.typicode.com/posts/${params.id}`);
+    const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${params.id}`);
+    const data = await response.json();
 
     return {
       props: {
-        post: response.data,
+        post: data,
       },
     };
   } catch (error) {

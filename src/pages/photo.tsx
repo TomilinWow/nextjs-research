@@ -2,7 +2,6 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { PageLayout } from '@/components/layout'
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { IPhoto } from "@/types/photos";
 
 export const PhotoCard = (props: IPhoto) => {
@@ -26,9 +25,9 @@ export default function Photo() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get<IPhoto[]>('https://jsonplaceholder.typicode.com/photos');
-        console.log('data', response.data);
-        setPhotos(response.data);
+        const response = await fetch('https://jsonplaceholder.typicode.com/photos');
+        const data = await response.json();
+        setPhotos(data);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
