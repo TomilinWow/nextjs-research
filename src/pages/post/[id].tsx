@@ -13,7 +13,7 @@ export default function PhotoDetails({
           <span className="rounded-md p-1 font-bold text-gray-900">{post.title}</span>
         </div>
         <div className="flex justify-center">
-          <p className="rounded-md w-100 font-semibold text-gray-900">{post.body}</p>
+          <p className="rounded-md w-100 font-semibold text-gray-900" id="post-body">{post.body}</p>
         </div>
       </div>
     </PageLayout>

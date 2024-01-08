@@ -9,7 +9,7 @@ export const PostCard = (props: IPost) => {
   const { body, title, id } = props
 
   return (
-    <Link href={router.pathname + '/' + id}>
+    <Link href={router.pathname + '/' + id} id={"post" + id}>
       <div className="mt-4 flex w-100 rounded-md gap-10 bg-blue-200 p-2 border-r-4">
         <div>
           <span className="ml-auto font-bold text-gray-900">{title}</span>
@@ -43,7 +43,7 @@ export default function Post() {
   return (
     <PageLayout>
       <div>
-        <div className="grid grid-cols-2 gap-4 ml-4 mr-4">
+        <div id={'posts'} className="grid grid-cols-2 gap-4 ml-4 mr-4">
           {posts.map((post) => {
             return <PostCard {...post} key={post.id} />
           })}
